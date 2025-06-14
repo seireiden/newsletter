@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Combined Layout with Loader</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Font -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            /* Reset and Base */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body,
+            html {
+                height: 100%;
+                font-family: "Nunito", sans-serif;
+                background: #f0f4f8;
+                color: #333;
+            }
+
+            /* Loader */
+            #loader-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #ffffff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+            }
+
+            .loader {
+                display: flex;
+                gap: 0.5em;
+            }
+
+            .loader span {
+                width: 1em;
+                height: 1em;
+                background: #6c63ff;
+                border-radius: 50%;
+                animation: bounce 0.6s infinite alternate;
+            }
+
+            .loader span:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .loader span:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+
+            @keyframes bounce {
+                to {
+                    transform: translateY(-100%);
+                }
+            }
+
+            /* Main Layout */
+            #main-content {
+                display: none;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+                padding: 2rem;
+            }
+
+            .container {
+                background: #ffffff;
+                padding: 2rem 3rem;
+                border-radius: 20px;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                width: 100%;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                color: #6c63ff;
+                margin-bottom: 1rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                color: #555;
+            }
+
+            /* Button */
+            .btn {
+                margin-top: 2rem;
+                padding: 0.75rem 2rem;
+                background: #6c63ff;
+                color: white;
+                border: none;
+                border-radius: 50px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .btn:hover {
+                background: #574b90;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Loader -->
+        <div id="loader-wrapper">
+            <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Main Layout -->
+        <div id="main-content">
+            <div class="container">
+                <h1>Welcome Aboard!</h1>
+                <p>
+                    This is a clean, responsive layout integrated with a smooth
+                    loader animation. All styles and scripts are bundled into
+                    this single HTML file for convenience.
+                </p>
+                <button class="btn">Get Started</button>
+            </div>
+        </div>
+
+        <script>
+            // Simulate loading delay
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    document.getElementById("loader-wrapper").style.display =
+                        "none";
+                    document.getElementById("main-content").style.display =
+                        "flex";
+                }, 3000); // 3 seconds delay
+            });
+        </script>
+    </body>
+</html>
