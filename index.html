@@ -2,26 +2,24 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Newspaper Page with Loader</title>
         <meta name="viewport" content="width=device-width" />
+        <title>Digital Malabar Newsletter</title>
         <link
             href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic"
             rel="stylesheet"
             type="text/css"
         />
         <style>
-            /* General Reset and Font */
-            html,
             body {
                 margin: 0;
                 padding: 0;
                 font-family: "Droid Serif", serif;
-                background: #f9f7f1;
+                background-color: #f9f7f1;
                 color: #2f2f2f;
             }
 
-            /* Loader Styles */
-            #loader {
+            /* Loader Section */
+            #loader-container {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -31,11 +29,18 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                z-index: 9999;
+                z-index: 1000;
+                opacity: 1;
+                transition: opacity 1s ease-in-out;
             }
 
-            .hnchak_newspaper {
-                animation: skewing 10s infinite;
+            #loader-container.fade-out {
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .loader-paper {
+                animation: loader-skew 10s infinite;
                 border: 4px solid #000;
                 width: 250px;
                 height: 300px;
@@ -44,12 +49,12 @@
                 box-sizing: border-box;
             }
 
-            .hnchak_newspaper--title {
+            .loader-title {
                 text-align: center;
                 margin-top: 10px;
             }
 
-            .hnchak_newspaper--title h3 {
+            .loader-title h3 {
                 font-size: 32px;
                 border-top: 2px solid #000;
                 border-bottom: 2px solid #000;
@@ -59,7 +64,7 @@
                 font-family: "Playfair Display", serif;
             }
 
-            .hnchak_newspaper--title-sub {
+            .loader-sub {
                 display: flex;
                 justify-content: space-between;
                 width: 75%;
@@ -68,13 +73,13 @@
                 font-size: 14px;
             }
 
-            .hnchak_newspaper--content {
+            .loader-content {
                 height: 180px;
                 width: 75%;
                 margin: 10px auto 0;
             }
 
-            .hnchak_newspaper--content .newspaper_line {
+            .loader-line {
                 background-color: rgba(0, 0, 0, 0.2);
                 height: 8px;
                 margin-top: 4px;
@@ -82,7 +87,7 @@
                 transition: all 0.8s;
             }
 
-            @keyframes skewing {
+            @keyframes loader-skew {
                 0% {
                     transform: skew(0);
                 }
@@ -97,8 +102,8 @@
                 }
             }
 
-            /* Hide content initially */
-            #main-content {
+            /* Hide newsletter initially */
+            #newsletter {
                 display: none;
             }
 
@@ -115,10 +120,6 @@
 
             .head {
                 text-align: center;
-                position: relative;
-            }
-
-            .headerobjectswrapper {
             }
 
             .subhead {
@@ -200,18 +201,6 @@
                 padding: 10px 0;
             }
 
-            .citation {
-                font-family: "Playfair Display", serif;
-                font-size: 36px;
-                text-align: center;
-                font-weight: 400;
-                margin: 40px 0;
-            }
-
-            .figure {
-                margin: 0 0 20px;
-            }
-
             .media {
                 filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
                 mix-blend-mode: multiply;
@@ -222,68 +211,34 @@
                 font-style: italic;
                 font-size: 12px;
             }
-
-            @media only screen and (max-width: 1200px) {
-                .collumn {
-                    width: 31%;
-                }
-            }
-
-            @media only screen and (max-width: 900px) {
-                .collumn {
-                    width: 47%;
-                }
-            }
-
-            @media only screen and (max-width: 600px) {
-                .collumn {
-                    width: 100%;
-                }
-
-                .collumn + .collumn {
-                    border-left: none;
-                    border-bottom: 1px solid #2f2f2f;
-                }
-
-                header {
-                    max-width: 320px;
-                    font-size: 60px;
-                    line-height: 54px;
-                    overflow: hidden;
-                }
-            }
         </style>
     </head>
     <body>
-        <!-- Loader -->
-        <div id="loader">
-            <div class="hnchak_newspaper">
-                <div class="hnchak_newspaper--title">
-                    <div class="hnchak_newspaper--title-sub">
+        <div id="loader-container">
+            <div class="loader-paper">
+                <div class="loader-title">
+                    <div class="loader-sub">
                         <i>malabar.live</i>
                         <i>2023</i>
                     </div>
                     <h3>Digital Malabar</h3>
-                    <div class="hnchak_newspaper--content">
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
-                        <div class="newspaper_line"></div>
+                    <div class="loader-content">
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
+                        <div class="loader-line"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Main Newspaper Content -->
-        <div id="main-content">
+        <div id="newsletter">
             <div class="head">
                 <div class="headerobjectswrapper">
                     <div class="weatherforcastbox">
@@ -314,16 +269,9 @@
                     </div>
                     <p>
                         When, while the lovely valley teems with vapour around
-                        me, and the meridian sun strikes the upper surface of
-                        the impenetrable foliage of my trees...
-                    </p>
-                    <p>
-                        I throw myself down among the tall grass by the
-                        trickling stream and hear the buzz of the little world
-                        among the stalks...
+                        me...
                     </p>
                 </div>
-
                 <div class="collumn">
                     <div class="head">
                         <span class="headline hl5">Give people courage</span>
@@ -335,8 +283,7 @@
                     </div>
                     <p>
                         The sunset faded to twilight before anything further
-                        happened. The crowd far away on the left, towards
-                        Woking, seemed to grow...
+                        happened...
                     </p>
                     <figure class="figure">
                         <img
@@ -348,12 +295,7 @@
                             Hermine hoping for courage.
                         </figcaption>
                     </figure>
-                    <p>
-                        Vertical black figures in twos and threes would advance,
-                        stop, watch, and advance again...
-                    </p>
                 </div>
-
                 <div class="collumn">
                     <div class="head">
                         <span class="headline hl1"
@@ -368,46 +310,31 @@
                     </div>
                     <p>
                         This time, let go your conscious self and act on
-                        instinct. In my experience, there is no such thing as
-                        luck...
-                    </p>
-                    <figure class="figure">
-                        <img
-                            class="media"
-                            src="http://i.giphy.com/4fDWVPMoSyhgc.gif"
-                            alt=""
-                        />
-                        <figcaption class="figcaption">
-                            "This time, let go your conscious self and act on
-                            instinct."
-                        </figcaption>
-                    </figure>
-                    <p>
-                        The plans you refer to will soon be back in our hands.
-                        As you wish.
+                        instinct...
                     </p>
                 </div>
             </div>
         </div>
 
         <script>
-            // Randomly change line widths in loader
-            function getRandomInt(max) {
-                return Math.floor(Math.random() * Math.floor(max));
-            }
-
-            const lines = document.getElementsByClassName("newspaper_line");
+            // Animate loader lines
+            const loaderLines = document.getElementsByClassName("loader-line");
             setInterval(() => {
-                const randomLine = lines[getRandomInt(lines.length)];
-                randomLine.style.width = getRandomInt(100) + "%";
+                const randomLine =
+                    loaderLines[Math.floor(Math.random() * loaderLines.length)];
+                randomLine.style.width = Math.floor(Math.random() * 100) + "%";
             }, 300);
 
-            // Hide loader after delay
+            // Loader to main content transition
             window.addEventListener("load", () => {
                 setTimeout(() => {
-                    document.getElementById("loader").style.display = "none";
-                    document.getElementById("main-content").style.display =
-                        "block";
+                    const loader = document.getElementById("loader-container");
+                    loader.classList.add("fade-out");
+                    setTimeout(() => {
+                        loader.style.display = "none";
+                        document.getElementById("newsletter").style.display =
+                            "block";
+                    }, 1000); // Wait for fade-out transition to complete
                 }, 3000);
             });
         </script>
