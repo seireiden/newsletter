@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ site.title }}</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic" rel="stylesheet">
+  <style>
+    /* Loader Styles */
+    .loader-container {
+      margin-top: 30vh;
+      display: flex;
+      justify-content: center;
+      background-color: #eee;
+    }
+    .loader-newspaper {
+      animation: skewing 10s infinite;
+      border: 4px solid #000;
+      width: 250px;
+      height: 300px;
+    }
+    .loader-newspaper--content {
+      height: 200px;
+      width: 75%;
+      margin: 10px auto 0 auto;
+    }
+    .loader-line {
+      background-color: rgba(0, 0, 0, 0.2);
+      height: 8px;
+      margin-top: 4px;
+      width: 100%;
+      transition: all .8s;
+    }
+    .loader-title {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .loader-title h3 {
+      font-size: 40px;
+      border: 2px solid #000;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      width: 75%;
+      margin: auto;
+      padding-bottom: 5px;
+    }
+    .loader-sub {
+      width: 75%;
+      display: flex;
+      justify-content: space-between;
+      margin: auto;
+      font-style: normal;
+    }
+    @keyframes skewing {
+      0% { transform: skew(0); }
+      35% { transform: skew(2deg, 2deg); }
+      70% { transform: skew(-2deg, -2deg); }
+      100% { transform: skew(0); }
+    }
+
+    /* Newspaper Styles */
+    body {
+      font-family: 'Droid Serif', serif;
+      font-size: 14px;
+      color: #2f2f2f;
+      background-color: #f9f7f1;
+    }
+    header {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 80px;
+      text-transform: uppercase;
+      display: inline-block;
+      line-height: 72px;
+      margin-bottom: 20px;
+    }
+    .head { text-align: center; position: relative; }
+    .subhead {
+      text-transform: uppercase;
+      border-bottom: 2px solid #2f2f2f;
+      border-top: 2px solid #2f2f2f;
+      padding: 12px 0;
+      margin-bottom: 20px;
+    }
+    .weatherforcastbox {
+      width: 12%;
+      left: 10px;
+      border: 3px double #2f2f2f;
+      padding: 10px 15px;
+      line-height: 20px;
+      display: inline-block;
+      margin: 0 50px 20px -360px;
+    }
+    .content {
+      display: inline-block;
+      margin: 30px 2% 0 2%;
+    }
+    .collumn {
+      font-size: 14px;
+      line-height: 20px;
+      width: 17.5%;
+      display: inline-block;
+      padding: 0 1%;
+      vertical-align: top;
+      margin-bottom: 50px;
+      transition: all .7s;
+    }
+    .collumn + .collumn { border-left: 1px solid #2f2f2f; }
+    .headline {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      margin: 0 auto;
+    }
+    .hl1 { font-weight: 700; font-size: 30px; text-transform: uppercase; padding: 10px 0; }
+    .hl2, .hl4, .hl6 {
+      box-sizing: border-box;
+      padding: 10px 0;
+      display: block;
+      text-align: center;
+    }
+    .hl2 { font-size: 24px; font-style: italic; }
+    .hl4, .hl6 { font-weight: 700; font-size: 12px; }
+    .hl2:before, .hl4:before, .hl6:before,
+    .hl2:after, .hl4:after, .hl6:after {
+      content: ''; display: block; width: 100px; margin: 0 auto;
+    }
+    .hl2:before, .hl4:before, .hl6:before { border-top: 1px solid #2f2f2f; height: 7px; }
+    .hl2:after { border-bottom: 1px solid #2f2f2f; height: 13px; }
+    .hl4:after, .hl6:after { border-bottom: 1px solid #2f2f2f; height: 10px; }
+    .citation {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      line-height: 44px;
+      font-weight: 400;
+      text-align: center;
+      display: block;
+      margin: 40px 0;
+    }
+    .citation:before, .citation:after {
+      border-top: 1px solid #2f2f2f;
+      content: '';
+      width: 100px;
+      height: 16px;
+      display: block;
+      margin: 0 auto;
+    }
+    .citation:after { border-bottom: 1px solid #2f2f2f; }
+    .figure { margin: 0 0 20px; }
+    .figcaption { font-style: italic; font-size: 12px; }
+    .media {
+      filter: sepia(80%) grayscale(1) contrast(1) opacity(0.8);
+      mix-blend-mode: multiply;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader-container">
+    <div class="loader-newspaper">
+      <div class="loader-title">
+        <div class="loader-sub"><i>malabar.live</i><i>{{ site.time | date: "%Y" }}</i></div>
+        <h3>Digital Malabar</h3>
+      </div>
+      <div class="loader-newspaper--content">{% for i in (1..15) %}<div class="loader-line"></div>{% endfor %}</div>
+    </div>
+  </div>
+  <div class="head">
+    <div class="headerobjectswrapper">
+      <div class="weatherforcastbox">
+        <span style="font-style: italic;">Weatherforcast for the next 24 hours: Plenty of Sunshine</span><br>
+        <span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span>
+      </div>
+      <header>{{ site.title }}</header>
+    </div>
+    <div class="subhead">{{ site.location }} - {{ site.date | date: "%A %B %d, %Y" }} - {{ site.pages }} Pages</div>
+  </div>
+  <div class="content">
+    <div class="collumns">
+      {% for post in site.posts limit:5 %}
+      <div class="collumn">
+        <div class="head">
+          <span class="headline hl1">{{ post.title }}</span>
+          <p><span class="headline hl2">by {{ post.author | default: "Anonymous" }}</span></p>
+        </div>
+        {{ post.content }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+    const lines = document.getElementsByClassName('loader-line');
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+    setInterval(() => {
+      lines[getRandomInt(lines.length)].style.width = getRandomInt(100) + '%';
+    }, 300);
+  </script>
+</body>
+</html>
