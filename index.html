@@ -162,44 +162,161 @@
                 border-left: 1px solid #2f2f2f;
             }
 
-            .headline {
-                text-align: center;
-                font-family: "Playfair Display", serif;
+            .collumn .headline.hl1{
+                font-weight: 700;
+                font-size: 30px;
+                text-transform: uppercase;
+                padding: 10px 0 10px 0;
+
+            }
+
+            .collumn .headline.hl2{
+                font-weight: 400;
+                font-style: italic;
+                font-size: 24px;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
+            }
+
+            .collumn .headline.hl2:before{
+                border-top: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 7px;
                 display: block;
                 margin: 0 auto;
             }
+            .collumn .headline.hl2:after{
+                border-bottom: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 13px;
+                display: block;
+                margin: 0 auto;
 
-            .hl1 {
-                font-size: 30px;
-                font-weight: 700;
-                text-transform: uppercase;
-                padding: 10px 0;
             }
-            .hl2 {
-                font-size: 24px;
+
+            .collumn .headline.hl3{
+                font-weight: 400;
                 font-style: italic;
-                padding: 10px 0;
-            }
-            .hl3 {
                 font-size: 36px;
-                font-style: italic;
-                padding: 10px 0;
-                line-height: 1.2;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
             }
-            .hl4 {
-                font-size: 12px;
+            .collumn .headline.hl4{
                 font-weight: 700;
-                padding: 10px 0;
+                font-size: 12px;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
             }
-            .hl5 {
+            .collumn .headline.hl4:before{
+                border-top: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 7px;
+                display: block;
+                margin: 0 auto;
+            }
+            .collumn .headline.hl4:after{
+                border-bottom: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 10px;
+                display: block;
+                margin: 0 auto;
+
+            }
+
+            .collumn .headline.hl5{
+                font-weight: 400;
                 font-size: 42px;
-                font-style: italic;
                 text-transform: uppercase;
-                padding: 10px 0;
+                font-style: italic;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
             }
-            .hl6 {
+            .collumn .headline.hl6{
+                font-weight: 400;
                 font-size: 18px;
-                padding: 10px 0;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
+            }
+            .collumn .headline.hl6:before{
+                border-top: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 7px;
+                display: block;
+                margin: 0 auto;
+            }
+            .collumn .headline.hl6:after{
+                border-bottom: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 10px;
+                display: block;
+                margin: 0 auto;
+
+            }
+            .collumn .headline.hl7{
+                font-weight: 700;
+                font-size: 12px;
+                box-sizing: border-box;
+                display: block;
+                padding: 10px 0 10px 0;
+            }
+            .collumn .headline.hl8{
+                font-weight: 700;
+                font-size: 12px;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
+            }
+            .collumn .headline.hl9{
+                font-weight: 700;
+                font-size: 12px;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
+            }
+            .collumn .headline.hl10{
+                font-weight: 700;
+                font-size: 12px;
+                box-sizing: border-box;
+                padding: 10px 0 10px 0;
+            }
+            .collumn .citation{
+                font-family: 'Playfair Display', serif;
+                font-size: 36px;
+                line-height: 44px;
+                /*font-style: italic;*/
+                text-align: center;
+                font-weight: 400;
+                display: block;
+                margin: 40px 0 40px 0;
+                font-feature-settings: "liga", "dlig";
+
+            }
+            .collumn .citation:before{
+                border-top: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 16px;
+                display: block;
+                margin: 0 auto;
+            }
+            .collumn .citation:after{
+                border-bottom: 1px solid #2f2f2f;
+                content: '';
+                width: 100px;
+                height: 16px;
+                display: block;
+                margin: 0 auto;
+            }
+            .collumn .figure {
+	  margin: 0 0 20px;
+            }
+            .collumn .figcaption{
+	font-style: italic;
+	font-size: 12px;
             }
 
             .media {
@@ -208,10 +325,7 @@
                 width: 100%;
             }
 
-            .figcaption {
-                font-style: italic;
-                font-size: 12px;
-            }
+
         </style>
     </head>
     <body>
@@ -219,13 +333,11 @@
             <div class="loader-paper">
                 <div class="loader-title">
                     <div class="loader-sub">
-                        <i>malabar.live</i>
-                        <i>2023</i>
+                        <i>rh3xp</i>
+                        <i>2025</i>
                     </div>
-                    <h3>Digital Malabar</h3>
+                    <h3>Unixverse HQ</h3>
                     <div class="loader-content">
-                        <div class="loader-line"></div>
-                        <div class="loader-line"></div>
                         <div class="loader-line"></div>
                         <div class="loader-line"></div>
                         <div class="loader-line"></div>
@@ -249,7 +361,7 @@
                         ><br />
                         <span>Wind: 7km/h SSE; Ther: 21°C; Hum: 82%</span>
                     </div>
-                    <header>Newpost York</header>
+                    <header>Unixverse HQ</header>
                 </div>
                 <div class="subhead">
                     York, MA - Thursday August 30, 1978 - Seven Pages
