@@ -2,296 +2,389 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Loader + Extended Layout</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <!-- Layout Styles -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Combined Layout with Loader</title>
         <style>
-            @import url("https://fonts.googleapis.com/css2?family=Spectral:wght@200;400;700&display=swap");
-
-            :root {
-                --bg: #f4f1ee;
-                --color: #201d1e;
-                --max-width: 700px;
-                --padding: 2rem;
-            }
-
-            *,
-            *::before,
-            *::after {
+            /* ===== Silkine's Layout Style ===== */
+            * {
+                margin: 0;
+                padding: 0;
                 box-sizing: border-box;
             }
 
             body {
-                margin: 0;
-                font-family: "Spectral", serif;
-                background-color: var(--bg);
-                color: var(--color);
-                line-height: 1.6;
-                font-size: 18px;
+                font-family: "Open Sans", sans-serif;
+                color: #333;
+                background-color: #f9f9f9;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
+
+            header {
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 100;
+            }
+
+            .logo {
+                font-size: 24px;
+                font-weight: 700;
+                color: #333;
+                text-decoration: none;
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-links li {
+                margin-left: 30px;
+            }
+
+            .nav-links a {
+                color: #333;
+                text-decoration: none;
+                font-weight: 600;
+                transition: color 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: #777;
             }
 
             main {
-                max-width: var(--max-width);
-                padding: var(--padding);
-                margin: 0 auto;
+                margin-top: 80px;
+                padding: 40px 0;
             }
 
-            article {
-                margin-bottom: 4rem;
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 30px;
             }
 
-            h1,
-            h2 {
-                font-weight: 700;
+            .card {
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                transition: transform 0.3s;
             }
 
-            h1 {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
+            .card:hover {
+                transform: translateY(-5px);
             }
 
-            h2 {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
+            .card-img {
+                height: 200px;
+                overflow: hidden;
             }
 
-            p {
-                margin-bottom: 1rem;
-            }
-
-            blockquote {
-                font-style: italic;
-                border-left: 4px solid var(--color);
-                padding-left: 1rem;
-                margin: 1.5rem 0;
-            }
-
-            img {
-                max-width: 100%;
-                height: auto;
-                display: block;
-                margin: 2rem auto;
-            }
-
-            #loader-container {
-                position: fixed;
-                z-index: 9999;
+            .card-img img {
                 width: 100%;
                 height: 100%;
-                background-color: #f4f1ee;
+                object-fit: cover;
+                transition: transform 0.3s;
+            }
+
+            .card:hover .card-img img {
+                transform: scale(1.05);
+            }
+
+            .card-content {
+                padding: 20px;
+            }
+
+            .card-title {
+                font-size: 18px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+
+            .card-text {
+                color: #777;
+                margin-bottom: 15px;
+                line-height: 1.5;
+            }
+
+            .btn {
+                display: inline-block;
+                background-color: #333;
+                color: #fff;
+                padding: 8px 15px;
+                border-radius: 3px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: background-color 0.3s;
+            }
+
+            .btn:hover {
+                background-color: #555;
+            }
+
+            footer {
+                background-color: #333;
+                color: #fff;
+                padding: 30px 0;
+                text-align: center;
+            }
+
+            .footer-text {
+                margin-bottom: 15px;
+            }
+
+            .social-links {
+                display: flex;
+                justify-content: center;
+                list-style: none;
+            }
+
+            .social-links li {
+                margin: 0 10px;
+            }
+
+            .social-links a {
+                color: #fff;
+                font-size: 20px;
+                transition: color 0.3s;
+            }
+
+            .social-links a:hover {
+                color: #ddd;
+            }
+        </style>
+        <style>
+            /* ===== Awwab Abdul's Loader Design ===== */
+            .awwab-loader {
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #000;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 9999;
+            }
+
+            .awwab-loader .awwab-loader-inner {
                 display: flex;
                 justify-content: center;
                 align-items: center;
             }
-        </style>
 
-        <!-- Loader Styles -->
-        <style>
-            .awwab-loader {
-                width: 120px;
-                height: 120px;
-                position: relative;
-                transform: rotate(45deg);
+            .awwab-loader .awwab-loader-inner .awwab-loader-block {
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                background: #fff;
+                animation: awwab-loader-anim 1.2s infinite ease-in-out;
             }
 
-            .awwab-loader span {
-                position: absolute;
-                display: block;
-                border: 5px solid #201d1e;
-                box-sizing: border-box;
-                animation: awwab-loader-anim 2s linear infinite;
-            }
-
-            .awwab-loader span:nth-child(1) {
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
+            .awwab-loader .awwab-loader-inner .awwab-loader-block:nth-child(1) {
                 animation-delay: 0s;
             }
 
-            .awwab-loader span:nth-child(2) {
-                width: 75%;
-                height: 75%;
-                top: 12.5%;
-                left: 12.5%;
-                animation-delay: 0.2s;
+            .awwab-loader .awwab-loader-inner .awwab-loader-block:nth-child(2) {
+                animation-delay: 0.15s;
             }
 
-            .awwab-loader span:nth-child(3) {
-                width: 50%;
-                height: 50%;
-                top: 25%;
-                left: 25%;
-                animation-delay: 0.4s;
+            .awwab-loader .awwab-loader-inner .awwab-loader-block:nth-child(3) {
+                animation-delay: 0.3s;
             }
 
-            .awwab-loader span:nth-child(4) {
-                width: 25%;
-                height: 25%;
-                top: 37.5%;
-                left: 37.5%;
-                animation-delay: 0.6s;
+            .awwab-loader .awwab-loader-inner .awwab-loader-block:nth-child(4) {
+                animation-delay: 0.45s;
             }
 
             @keyframes awwab-loader-anim {
                 0% {
-                    transform: scale(1) rotate(0deg);
+                    transform: scale(1);
                     opacity: 1;
                 }
+                50% {
+                    transform: scale(0.5);
+                    opacity: 0.5;
+                }
                 100% {
-                    transform: scale(0.5) rotate(360deg);
-                    opacity: 0;
+                    transform: scale(1);
+                    opacity: 1;
                 }
             }
         </style>
     </head>
     <body>
-        <!-- Loader -->
-        <div id="loader-container">
-            <div class="awwab-loader">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+        <!-- Awwab Abdul's Loader -->
+        <div class="awwab-loader">
+            <div class="awwab-loader-inner">
+                <div class="awwab-loader-block"></div>
+                <div class="awwab-loader-block"></div>
+                <div class="awwab-loader-block"></div>
+                <div class="awwab-loader-block"></div>
             </div>
         </div>
 
-        <!-- Page Content -->
+        <!-- Silkine's Layout -->
+        <header>
+            <div class="container">
+                <nav>
+                    <a href="#" class="logo">Logo</a>
+                    <ul class="nav-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
         <main>
-            <!-- Original 3 Articles -->
-            <!-- [Article 1 to 3 kept intact from previous version] -->
-            <article>
-                <h1>The Written Word</h1>
-                <p>
-                    The written word has been a cornerstone of human
-                    communication for thousands of years...
-                </p>
-                <blockquote>
-                    “We write to taste life twice, in the moment and in
-                    retrospect.” – Anaïs Nin
-                </blockquote>
-                <p>Typography plays a vital role...</p>
-                <img
-                    src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1400&q=80"
-                    alt="Books on a shelf"
-                />
-                <p>
-                    In an age where screens dominate our reading experience...
-                </p>
-            </article>
-
-            <article>
-                <h2>The Art of Storytelling</h2>
-                <p>Storytelling is as old as humanity itself...</p>
-                <p>Great storytelling captures the imagination...</p>
-                <img
-                    src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80"
-                    alt="Writing with a feather"
-                />
-            </article>
-
-            <article>
-                <h2>Evolution of the Page</h2>
-                <p>From scrolls and manuscripts to modern e-readers...</p>
-                <p>
-                    Today, digital typography allows unprecedented
-                    flexibility...
-                </p>
-                <img
-                    src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?auto=format&fit=crop&w=1400&q=80"
-                    alt="E-reader with text"
-                />
-            </article>
-
-            <!-- New Articles 4 to 8 -->
-            <article>
-                <h2>Typography and Emotion</h2>
-                <p>
-                    Fonts evoke feelings. A serif font may convey tradition,
-                    while a bold sans-serif might suggest innovation and
-                    clarity.
-                </p>
-                <p>
-                    Writers and designers collaborate closely to align visual
-                    tone with emotional intent.
-                </p>
-                <img
-                    src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"
-                    alt="Typography layout"
-                />
-            </article>
-
-            <article>
-                <h2>Paper to Pixel</h2>
-                <p>
-                    Print media once ruled the world. Now, digital screens offer
-                    portability and accessibility.
-                </p>
-                <blockquote>
-                    “The medium is the message.” – Marshall McLuhan
-                </blockquote>
-                <p>
-                    The shift demands a new kind of literacy — one not just of
-                    language, but of interface.
-                </p>
-                <img
-                    src="https://images.unsplash.com/photo-1515202913167-d9a698095ef2?auto=format&fit=crop&w=1400&q=80"
-                    alt="Newspaper and tablet"
-                />
-            </article>
-
-            <article>
-                <h2>Minimalist Composition</h2>
-                <p>
-                    Whitespace is powerful. Restraint can speak louder than
-                    cluttered expression.
-                </p>
-                <p>Designs that breathe feel more approachable and modern.</p>
-                <img
-                    src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1400&q=80"
-                    alt="Minimal design with text"
-                />
-            </article>
-
-            <article>
-                <h2>Reading Rituals</h2>
-                <p>
-                    For many, reading is not a task — it's a ritual. A quiet
-                    morning with coffee. A nightcap with fiction.
-                </p>
-                <p>The environment we read in shapes our interpretation.</p>
-                <img
-                    src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=1400&q=80"
-                    alt="Reading with coffee"
-                />
-            </article>
-
-            <article>
-                <h2>The Future of Fonts</h2>
-                <p>
-                    With AI and generative design, typography is no longer
-                    static. Responsive type adapts to user mood, screen size,
-                    and context.
-                </p>
-                <p>
-                    The future isn't just about how we read — but how type reads
-                    us back.
-                </p>
-                <img
-                    src="https://images.unsplash.com/photo-1606312619028-6c8799d197db?auto=format&fit=crop&w=1400&q=80"
-                    alt="Futuristic text design"
-                />
-            </article>
+            <div class="container">
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-img">
+                            <img
+                                src="https://source.unsplash.com/random/300x200"
+                                alt="Card Image"
+                            />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Card Title</h3>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Nullam in dui mauris.
+                            </p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img
+                                src="https://source.unsplash.com/random/300x201"
+                                alt="Card Image"
+                            />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Card Title</h3>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Nullam in dui mauris.
+                            </p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img
+                                src="https://source.unsplash.com/random/300x202"
+                                alt="Card Image"
+                            />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Card Title</h3>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Nullam in dui mauris.
+                            </p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img
+                                src="https://source.unsplash.com/random/300x203"
+                                alt="Card Image"
+                            />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Card Title</h3>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Nullam in dui mauris.
+                            </p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img
+                                src="https://source.unsplash.com/random/300x204"
+                                alt="Card Image"
+                            />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Card Title</h3>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Nullam in dui mauris.
+                            </p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img">
+                            <img
+                                src="https://source.unsplash.com/random/300x205"
+                                alt="Card Image"
+                            />
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Card Title</h3>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Nullam in dui mauris.
+                            </p>
+                            <a href="#" class="btn">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
-        <!-- Hide loader -->
+        <footer>
+            <div class="container">
+                <p class="footer-text">
+                    © 2023 Your Company. All rights reserved.
+                </p>
+                <ul class="social-links">
+                    <li>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+
         <script>
-            window.addEventListener("load", function () {
-                document.getElementById("loader-container").style.display =
-                    "none";
-            });
+            // Simple loader removal after 3 seconds (simulating page load)
+            setTimeout(function () {
+                document.querySelector(".awwab-loader").style.display = "none";
+            }, 3000);
         </script>
     </body>
 </html>
